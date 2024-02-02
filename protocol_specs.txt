@@ -1,0 +1,10 @@
+codification | lenght | check_sum | data
+
+codification: 1 byte
+0 for ASCII, 1 for Unicode
+
+lenght: 2 bytes
+
+check_sum: 2 bytes
+
+data
