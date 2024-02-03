@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 21:05:11 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/03 22:17:29 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/03 23:16:22 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ typedef struct  s_packet
 }               t_packet;
 
 void print_server_pid(void);
+void	show_banner(void);
 
 #endif

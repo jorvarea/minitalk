@@ -29,7 +29,7 @@ $(SERVER): $(LIBFT) $(PRINTF) $(UTILS_OBJECT_FILES) src/server.c includes/minish
 $(CLIENT): $(LIBFT) $(UTILS_OBJECT_FILES) src/client.c includes/minishell_utils.h
 	@echo "${YELLOW}Linking $(CLIENT)...${NO_COLOR}"
 	@mkdir -p bin
-	@$(CC) $(CFLAGS) -o bin/$(CLIENT) src/client.c $(UTILS_OBJECT_FILES) $(LIBFT)
+	@$(CC) $(CFLAGS) -o bin/$(CLIENT) src/client.c $(UTILS_OBJECT_FILES) $(LIBFT) $(PRINTF)
 
 $(LIBFT):
 	@echo "${GREEN}Making libft...${NO_COLOR}"
@@ -39,7 +39,7 @@ $(PRINTF):
 	@echo "${GREEN}Making printf...${NO_COLOR}"
 	@$(MAKE) -C $(PRINTF_DIR)
 
-obj/%.o: $(UTILS_FILES)/%.c
+obj/%.o: $(UTILS_DIR)/%.c
 	@echo "${YELLOW}Compiling $<...${NO_COLOR}"
 	@mkdir -p obj
 	@$(CC) $(CFLAGS) -c $< -o $@

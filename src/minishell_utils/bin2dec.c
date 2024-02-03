@@ -12,17 +12,17 @@
 
 #include "minishell_utils.h"
 
-int bin2dec(char *str)
+int	bin2dec(char *str)
 {
-    int num;
-    int i;
+	int	num;
+	int	i;
 
-    num = 0;
-    i = 0;
-    while (str[i])
-    {
-        num = num * 2 + str[i] - '0';
-        i++;
-    }
-    return (num);
+	num = 0;
+	i = 0;
+	while (str[i])
+	{
+		num = num * 2 + str[i] - '0';
+		i++;
+	}
+	return (num);
 }

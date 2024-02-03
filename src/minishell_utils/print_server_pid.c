@@ -12,10 +12,10 @@
 
 #include "minishell_utils.h"
 
-void print_server_pid(void)
+void	print_server_pid(void)
 {
-    pid_t server_pid;
-    
-    server_pid = getpid();
-    ft_printf("SERVER'S PROCESS ID: %d\n", server_pid);
+	pid_t	server_pid;
+
+	server_pid = getpid();
+	ft_printf("SERVER'S PROCESS ID: %d\n", server_pid);
 }
