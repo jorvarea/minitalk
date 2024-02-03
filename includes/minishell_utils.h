@@ -6,14 +6,17 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 21:05:11 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/03 21:55:11 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/03 22:17:29 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_UTILS_H
 # define MINISHELL_UTILS_H
 
+# include <unistd.h>
+# include <signal.h>
 # include "libft.h"
+# include "ft_printf.h"
 
 typedef enum    e_codification
 {
@@ -40,7 +43,6 @@ typedef struct  s_packet
     unsigned char *data;
 }               t_packet;
 
-int     bin2dec(char *str);
-char    *dec2bin(int x);
+void print_server_pid(void);
 
 #endif
