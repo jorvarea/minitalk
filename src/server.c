@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/02 21:46:00 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/03 21:59:01 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 int main(void)
 {
-    void (*prev_handler)(int);
-
-    prev_handler = signal
+    int server_pid;
+    int *total_bits;
+    
+    server_pid = getpid();
+    while(true)
+    {
+        
+    }
 }

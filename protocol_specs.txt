@@ -1,10 +1,10 @@
-codification | lenght | check_sum | data
+source_PID | codification | flags | sequence_number | ack_number | payload_lenght | check_sum | data
 
-codification: 1 byte
-0 for ASCII, 1 for Unicode
-
-lenght: 2 bytes
-
+source_PID: 2 bytes
+codification: 1 byte (0 ascii, 1 unicode)
+flags: 1 byte (ack, fin, data)
+sequence_number: 2 bytes
+ack_number: 2 bytes
+payload_lenght: 2 bytes
 check_sum: 2 bytes
-
 data
