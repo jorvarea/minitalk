@@ -5,7 +5,7 @@ NO_COLOR				= \033[0m
 
 CLIENT					= client
 SERVER					= server
-NAME					= $(SERVER) $(CLIENT)
+NAME					= bin/$(SERVER) bin/$(CLIENT)
 
 UTILS_DIR				= src/minishell_utils
 LIBFT_DIR 				= lib/libft
