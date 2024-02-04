@@ -1,1 +1,6 @@
-codification | sequence_number | payload_lenght | check_sum | data
+codification | payload_lenght | check_sum | data
+
+1 byte
+2 bytes
+2 bytes
+2 bytes

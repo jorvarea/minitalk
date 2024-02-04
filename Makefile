@@ -3,9 +3,9 @@ GREEN					= \033[0;32m
 YELLOW					= \033[0;33m
 NO_COLOR				= \033[0m
 
-CLIENT					= client
-SERVER					= server
-NAME					= bin/$(SERVER) bin/$(CLIENT)
+CLIENT					= bin/client
+SERVER					= bin/server
+NAME					= $(SERVER) $(CLIENT)
 
 UTILS_DIR				= src/minishell_utils
 LIBFT_DIR 				= lib/libft
@@ -24,12 +24,12 @@ all: $(NAME)
 $(SERVER): $(LIBFT) $(PRINTF) $(UTILS_OBJECT_FILES) src/server.c includes/minishell_utils.h
 	@echo "${YELLOW}Linking $(SERVER)...${NO_COLOR}"
 	@mkdir -p bin
-	@$(CC) $(CFLAGS) -o bin/$(SERVER) src/server.c $(UTILS_OBJECT_FILES) $(LIBFT) $(PRINTF)
+	@$(CC) $(CFLAGS) -o$(SERVER) src/server.c $(UTILS_OBJECT_FILES) $(LIBFT) $(PRINTF)
 
 $(CLIENT): $(LIBFT) $(UTILS_OBJECT_FILES) src/client.c includes/minishell_utils.h
 	@echo "${YELLOW}Linking $(CLIENT)...${NO_COLOR}"
 	@mkdir -p bin
-	@$(CC) $(CFLAGS) -o bin/$(CLIENT) src/client.c $(UTILS_OBJECT_FILES) $(LIBFT) $(PRINTF)
+	@$(CC) $(CFLAGS) -o $(CLIENT) src/client.c $(UTILS_OBJECT_FILES) $(LIBFT) $(PRINTF)
 
 $(LIBFT):
 	@echo "${GREEN}Making libft...${NO_COLOR}"
