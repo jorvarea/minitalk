@@ -1,0 +1,11 @@
+# About signals
+
+https://www.geeksforgeeks.org/fork-system-call/
+
+https://www.geeksforgeeks.org/wait-system-call-c/
+
+https://www.geeksforgeeks.org/signals-c-language/
+
+https://www.geeksforgeeks.org/signals-c-set-2/?ref=gcse
+
+https://www.geeksforgeeks.org/write-a-c-program-that-doesnt-terminate-when-ctrlc-is-pressed/?ref=gcse
