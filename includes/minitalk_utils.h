@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 21:05:11 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 18:15:09 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:29:20 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ typedef struct      s_byte
 
 typedef enum        e_server_state
 {
-    WAITING_PACKET  = 0,
-    READING_HEADER  = 1,
-    READING_DATA    = 2,
+    WAITING_PACKET          = 0,
+    READING_PAYLOAD_LENGTH  = 1,
+    READING_CHECKSUM        = 2,
+    READING_DATA            = 3,
+    PACKET_COMPLETE         = 4,
 }                   t_server_state;
 
 // Common
@@ -47,6 +49,8 @@ int	calculate_checksum(t_packet *packet);
 // Server
 void    print_server_pid(void);
 void	show_banner(void);
+void    handle_byte(unsigned char byte, t_packet *packet, t_server_state *state, int *field_bytes_read);
+bool    valid_checksum(t_packet *packet);
 
 // Client
 void    packet_message(char *message, t_packet *packet);
