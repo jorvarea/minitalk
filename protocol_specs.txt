@@ -1,4 +1,4 @@
 payload_lenght | check_sum | data
 
-payload_lenght: 2 bytes (how many bytes)
+payload_lenght: 2 bytes (in bytes)
 check_sum: 2 bytes
