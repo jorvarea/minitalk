@@ -7,7 +7,7 @@ CLIENT					= bin/client
 SERVER					= bin/server
 NAME					= $(SERVER) $(CLIENT)
 
-UTILS_DIR				= src/minishell_utils
+UTILS_DIR				= src/minitalk_utils
 LIBFT_DIR 				= lib/libft
 LIBFT 					= $(LIBFT_DIR)/libft.a
 PRINTF_DIR 				= lib/printf
@@ -21,12 +21,12 @@ UTILS_OBJECT_FILES		= $(UTILS_FILES:$(UTILS_DIR)/%.c=obj/%.o)
 
 all: $(NAME)
 
-$(SERVER): $(LIBFT) $(PRINTF) $(UTILS_OBJECT_FILES) src/server.c includes/minishell_utils.h
+$(SERVER): $(LIBFT) $(PRINTF) $(UTILS_OBJECT_FILES) src/server.c includes/minitalk_utils.h
 	@echo "${YELLOW}Linking $(SERVER)...${NO_COLOR}"
 	@mkdir -p bin
 	@$(CC) $(CFLAGS) -o$(SERVER) src/server.c $(UTILS_OBJECT_FILES) $(LIBFT) $(PRINTF)
 
-$(CLIENT): $(LIBFT) $(UTILS_OBJECT_FILES) src/client.c includes/minishell_utils.h
+$(CLIENT): $(LIBFT) $(UTILS_OBJECT_FILES) src/client.c includes/minitalk_utils.h
 	@echo "${YELLOW}Linking $(CLIENT)...${NO_COLOR}"
 	@mkdir -p bin
 	@$(CC) $(CFLAGS) -o $(CLIENT) src/client.c $(UTILS_OBJECT_FILES) $(LIBFT) $(PRINTF)
