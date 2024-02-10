@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 19:25:49 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 19:29:08 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:31:55 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static void read_checksum(unsigned char byte, t_packet *packet, t_server_state *
     if (*field_bytes_read == 0)
     {
         packet->check_sum = byte;
-        packet->check_sum << 8;
+        packet->check_sum = packet->check_sum << 8;
     }
     else if (*field_bytes_read == 1)
         packet->check_sum += byte;
-    *(field_bytes_read)++;
+    (*field_bytes_read)++;
     if (*field_bytes_read == 2)
     {
         (*state)++;
@@ -34,11 +34,11 @@ static void read_payload_lenght(unsigned char byte, t_packet *packet, t_server_s
     if (*field_bytes_read == 0)
     {
         packet->payload_length = byte;
-        packet->payload_length << 8;
+        packet->payload_length = packet->payload_length << 8;
     }
     else if (*field_bytes_read == 1)
         packet->payload_length += byte;
-    *(field_bytes_read)++;
+    (*field_bytes_read)++;
     if (*field_bytes_read == 2)
     {
         (*state)++;

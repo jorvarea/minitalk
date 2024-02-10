@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 21:05:11 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 19:29:20 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:33:58 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void    print_server_pid(void);
 void	show_banner(void);
 void    handle_byte(unsigned char byte, t_packet *packet, t_server_state *state, int *field_bytes_read);
 bool    valid_checksum(t_packet *packet);
+void    print_message(t_packet *packet);
 
 // Client
 void    packet_message(char *message, t_packet *packet);

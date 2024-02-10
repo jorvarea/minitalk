@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 19:29:49 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:34:04 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int main(void)
             g_byte.bits_written = 0;
         }
         if (state == PACKET_COMPLETE && valid_checksum(&packet))
-            print_message(packet);
+            print_message(&packet);
         else if (state == PACKET_COMPLETE)
             ft_printf("Invalid checksum. Asking for retransmission...\n");
         pause();
