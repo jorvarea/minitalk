@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 21:05:11 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 14:33:22 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 16:12:14 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,12 @@
 # include "libft.h"
 # include "ft_printf.h"
 
-typedef enum    e_codification
-{
-    ASCII = 0,
-    UNICODE = 1,
-}               t_codification;
-
 typedef struct      s_packet
 {
     int                     source_pid;
-    t_codification          code;
     int                     payload_length;
     int                     check_sum;
-    unsigned char           *data;
+    char                    *data;
 }                   t_packet;
 
 typedef struct      s_byte

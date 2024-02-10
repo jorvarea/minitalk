@@ -1,6 +1,4 @@
-codification | payload_lenght | check_sum | data
+payload_lenght | check_sum | data
 
-codification: 1 byte
-payload_lenght: 2 bytes (how many characters)
+payload_lenght: 2 bytes (how many bytes)
 check_sum: 2 bytes
-data: 2 bytes
