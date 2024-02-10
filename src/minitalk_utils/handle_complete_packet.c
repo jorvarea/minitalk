@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 20:26:36 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 20:59:29 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 21:18:34 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ void	handle_complete_packet(t_server_state *state, t_packet *packet)
 		ft_printf("\033[0m");
 	}
 	*state = WAITING_PACKET;
-	packet->data = NULL;
 	free(packet->data);
+	packet->data = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 20:41:24 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 21:20:53 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(void)
 	initialize_server(&state, &packet, &field_bytes_read);
 	while (true)
 	{
-		if (g_byte.bits_written == 8)
+		if (g_byte.bits_written >= 8)
 		{
 			handle_byte(g_byte.byte, &packet, &state, &field_bytes_read);
 			g_byte.byte = 0;
