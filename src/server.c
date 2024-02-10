@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 19:54:55 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:02:27 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ int main(void)
             state = WAITING_PACKET;
         }
         else if (state == PACKET_COMPLETE)
+        {
             ft_printf("Invalid checksum. Asking for retransmission...\n");
+            state = WAITING_PACKET;
+        }
         pause();
     }
     return (0);
