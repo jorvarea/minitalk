@@ -6,11 +6,11 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 23:10:21 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/03 23:34:06 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 16:32:02 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_utils.h"
+#include "minitalk_utils.h"
 
 void	show_banner(void)
 {

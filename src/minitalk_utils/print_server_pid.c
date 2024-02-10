@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calculate_checksum.c                               :+:      :+:    :+:   */
+/*   print_server_pid.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 15:25:40 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 16:13:17 by jorvarea         ###   ########.fr       */
+/*   Created: 2024/02/03 22:14:44 by jorvarea          #+#    #+#             */
+/*   Updated: 2024/02/10 16:31:54 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_utils.h"
+#include "minitalk_utils.h"
 
-int calculate_checksum(t_packet *packet)
+void	print_server_pid(void)
 {
-    int sum;
-    int i;
+	pid_t	server_pid;
 
-    sum = 0;
-    sum += packet->payload_length;
-    i = 0;
-    while (packet->data[i])
-        sum += (unsigned char)packet->data[i++];
-    return (sum);
+	server_pid = getpid();
+	ft_printf("SERVER'S PROCESS ID: %d\n", server_pid);
 }

@@ -6,14 +6,15 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/04 18:48:34 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 16:32:14 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_utils.h"
+#include "minitalk_utils.h"
 
 int	main(int argc, char **argv)
 {
+	t_packet packet;
 	int	server_pid;
 	int	i;
 
@@ -23,6 +24,7 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	server_pid = ft_atoi(argv[1]);
+	packet_message(argv[1], &packet);
 	i = 0;
 	while (i < 100)
 	{
