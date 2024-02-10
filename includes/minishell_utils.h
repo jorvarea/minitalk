@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 21:05:11 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 14:10:12 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 14:30:13 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct      s_packet
     int                     source_pid;
     t_codification          code;
     int                     payload_length;
-    int                     check_sum;
     unsigned char           *data;
 }                   t_packet;
 
