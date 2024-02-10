@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 16:30:31 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 16:31:37 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 16:35:12 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 void send_packet(t_packet *packet, int signal_interval)
 {
+    int i;
+
+    i = 0;
+    while (i < 8)
     
 }
