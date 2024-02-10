@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 19:25:49 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 19:50:55 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:22:53 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void handle_byte(unsigned char byte, t_packet *packet, t_server_state *state, in
         read_checksum(byte, packet, state, field_bytes_read);
     else if (*state == READING_DATA)
     {
+        if (packet->data == NULL)
+            packet->data = malloc(packet->payload_length * sizeof(char));
         packet->data[*field_bytes_read] = byte;
         (*field_bytes_read)++;
         if (*field_bytes_read == packet->payload_length)
