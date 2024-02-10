@@ -14,24 +14,24 @@
 
 void	show_banner(void)
 {
-    ft_printf("\n\n");
-    ft_printf("\033[0;35m");
+	ft_printf("\n\n");
+	ft_printf("\033[0;35m");
 	ft_printf("##     ## #### ##    ## #### ########    ###    ##       ");
-    ft_printf("##    ##\n");
-    ft_printf("\033[0;34m");
+	ft_printf("##    ##\n");
+	ft_printf("\033[0;34m");
 	ft_printf("###   ###  ##  ###   ##  ##     ##      ## ##   ##       ");
-    ft_printf("##   ## \n");
+	ft_printf("##   ## \n");
 	ft_printf("#### ####  ##  ####  ##  ##     ##     ##   ##  ##       ");
-    ft_printf("##  ##  \n");
+	ft_printf("##  ##  \n");
 	ft_printf("## ### ##  ##  ## ## ##  ##     ##    ##     ## ##       ");
-    ft_printf("#####   \n");
+	ft_printf("#####   \n");
 	ft_printf("##     ##  ##  ##  ####  ##     ##    ######### ##       ");
-    ft_printf("##  ##  \n");
+	ft_printf("##  ##  \n");
 	ft_printf("##     ##  ##  ##   ###  ##     ##    ##     ## ##       ");
-    ft_printf("##   ## \n");
-    ft_printf("\033[0;35m");
+	ft_printf("##   ## \n");
+	ft_printf("\033[0;35m");
 	ft_printf("##     ## #### ##    ## ####    ##    ##     ## ######## ");
-    ft_printf("##    ##\n");
-    ft_printf("\e[0m");
-    ft_printf("\n\n");
+	ft_printf("##    ##\n");
+	ft_printf("\e[0m");
+	ft_printf("\n\n");
 }

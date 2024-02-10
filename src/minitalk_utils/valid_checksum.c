@@ -12,10 +12,10 @@
 
 #include "minitalk_utils.h"
 
-bool valid_checksum(t_packet *packet)
+bool	valid_checksum(t_packet *packet)
 {
-    int checksum;
+	int	checksum;
 
-    checksum = calculate_checksum(packet);
-    return (checksum == packet->check_sum);
+	checksum = calculate_checksum(packet);
+	return (checksum == packet->check_sum);
 }

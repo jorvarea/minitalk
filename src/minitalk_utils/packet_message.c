@@ -13,14 +13,14 @@
 #include "minitalk_utils.h"
 #define MAX_PAYLOAD 65535
 
-void packet_message(char *message, t_packet *packet)
+void	packet_message(char *message, t_packet *packet)
 {
-    packet->payload_length = ft_strlen(message);
-    if (packet->payload_length > MAX_PAYLOAD)
-    {
-        ft_printf("Error: Message is too large\n");
-        exit(1);
-    }
-    packet->data = message;
-    packet->check_sum = calculate_checksum(packet);
+	packet->payload_length = ft_strlen(message);
+	if (packet->payload_length > MAX_PAYLOAD)
+	{
+		ft_printf("Error: Message is too large\n");
+		exit(1);
+	}
+	packet->data = message;
+	packet->check_sum = calculate_checksum(packet);
 }

@@ -12,11 +12,11 @@
 
 #include "minitalk_utils.h"
 
-void print_message(t_packet *packet)
+void	print_message(t_packet *packet)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (i < packet->payload_length)
-        ft_printf("%c", packet->data[i++]);
+	i = 0;
+	while (i < packet->payload_length)
+		ft_printf("%c", packet->data[i++]);
 }
