@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 21:05:11 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/04 19:09:01 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 14:10:12 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@ typedef enum    e_codification
     UNICODE = 1,
 }               t_codification;
 
-typedef struct  s_packet
+typedef struct      s_packet
 {
-    int source_pid;
-    t_codification code;
-    int payload_len;
-    int check_sum;
-    unsigned char *data;
-}               t_packet;
+    int                     source_pid;
+    t_codification          code;
+    int                     payload_length;
+    int                     check_sum;
+    unsigned char           *data;
+}                   t_packet;
 
 typedef struct      s_byte
 {
-    volatile unsigned char byte;
-    volatile sig_atomic_t bits_written;
+    volatile unsigned char  byte;
+    volatile sig_atomic_t   bits_written;
 }                   t_byte;
 
 void    print_server_pid(void);
