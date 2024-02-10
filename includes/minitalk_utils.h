@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 21:05:11 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 19:33:58 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:39:50 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ typedef enum        e_server_state
     PACKET_COMPLETE         = 4,
 }                   t_server_state;
 
-// Common
-int	calculate_checksum(t_packet *packet);
-
 // Server
 void    print_server_pid(void);
 void	show_banner(void);
@@ -55,6 +52,7 @@ void    print_message(t_packet *packet);
 
 // Client
 void    packet_message(char *message, t_packet *packet);
+int	    calculate_checksum(t_packet *packet);
 void	send_packet(t_packet *packet, int server_pid, int signal_interval);
 
 #endif
