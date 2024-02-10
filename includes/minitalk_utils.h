@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 21:05:11 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 17:43:05 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:15:09 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,15 @@ typedef struct      s_packet
 typedef struct      s_byte
 {
     volatile unsigned char  byte;
-    volatile sig_atomic_t   bits_written;
+    volatile int            bits_written;
 }                   t_byte;
+
+typedef enum        e_server_state
+{
+    WAITING_PACKET  = 0,
+    READING_HEADER  = 1,
+    READING_DATA    = 2,
+}                   t_server_state;
 
 // Common
 int	calculate_checksum(t_packet *packet);
