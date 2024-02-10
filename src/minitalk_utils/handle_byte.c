@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 19:25:49 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 19:31:55 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:50:55 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void read_checksum(unsigned char byte, t_packet *packet, t_server_state *
     }
 }
 
-static void read_payload_lenght(unsigned char byte, t_packet *packet, t_server_state *state, int *field_bytes_read)
+static void read_payload_length(unsigned char byte, t_packet *packet, t_server_state *state, int *field_bytes_read)
 {
     if (*field_bytes_read == 0)
     {
@@ -51,12 +51,13 @@ void handle_byte(unsigned char byte, t_packet *packet, t_server_state *state, in
     if (*state == WAITING_PACKET)
         *state = READING_PAYLOAD_LENGTH;
     if (*state == READING_PAYLOAD_LENGTH)
-        read_payload_lenght(byte, packet, state, field_bytes_read);
+        read_payload_length(byte, packet, state, field_bytes_read);
     else if (*state == READING_CHECKSUM)
         read_checksum(byte, packet, state, field_bytes_read);
     else if (*state == READING_DATA)
     {
         packet->data[*field_bytes_read] = byte;
+        (*field_bytes_read)++;
         if (*field_bytes_read == packet->payload_length)
         {
             *state = PACKET_COMPLETE;
