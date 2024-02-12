@@ -39,7 +39,7 @@ int	main(void)
 	t_server_state	state;
 	t_packet		packet;
 	int				field_bytes_read;
-	unsigned long long int time;
+	unsigned long long int timer;
 
 	initialize_server(&state, &packet, &field_bytes_read);
 	while (true)
@@ -47,13 +47,14 @@ int	main(void)
 		if (g_byte.bits_written >= 8)
 		{
 			handle_byte(g_byte.byte, &packet, &state, &field_bytes_read);
-			time = 0;
 			g_byte.byte = 0;
 			g_byte.bits_written = 0;
 		}
 		else if (state == PACKET_COMPLETE)
 			handle_complete_packet(&state, &packet, &field_bytes_read);
-		if (state != WAITING_PACKET && time > TIMEOUT)
+		if (state == WAITING_PACKET || state == READING_CHECKSUM)
+			timer = 0;
+		if ((state == READING_PAYLOAD_LENGTH && timer > TIMEOUT) || (state == READING_DATA && timer > TIMEOUT * packet.payload_length))
 			handle_timeout(&state, &packet, &field_bytes_read);
 		time++;
 	}
