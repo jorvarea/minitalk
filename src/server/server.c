@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/12 22:09:22 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/12 22:29:09 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,14 @@ int	main(void)
 		if (g_byte.bits_written >= 8)
 		{
 			handle_byte(g_byte.byte, &packet, &state, &field_bytes_read);
+			time = 0;
 			g_byte.byte = 0;
 			g_byte.bits_written = 0;
 		}
-		if (state == WAITING_PACKET)
-			time = 0;
 		else if (state == PACKET_COMPLETE)
-			handle_complete_packet(&state, &packet);
-		if (time > TIMEOUT)
-			handle_timeout(&state, &packet);
+			handle_complete_packet(&state, &packet, &field_bytes_read);
+		if (state != WAITING_PACKET && time > TIMEOUT)
+			handle_timeout(&state, &packet, &field_bytes_read);
 		time++;
 	}
 	return (0);

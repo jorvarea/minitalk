@@ -6,14 +6,14 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:26 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/12 22:09:11 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/12 22:16:52 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_H
 # define SERVER_H
 
-# define TIMEOUT 100000000
+# define TIMEOUT 1000000000
 # include "common.h"
 
 typedef struct s_byte
@@ -37,9 +37,9 @@ void	print_server_pid(void);
 void	show_banner(void);
 void	handle_byte(unsigned char byte, t_packet *packet, 
             t_server_state *state, int *field_bytes_read);
-void	handle_complete_packet(t_server_state *state, t_packet *packet);
+void	handle_complete_packet(t_server_state *state, t_packet *packet, int *field_bytes_read);
 bool	valid_checksum(t_packet *packet);
 void    print_message(t_packet *packet);
-void 	handle_timeout(t_server_state *state, t_packet *packet);
+void 	handle_timeout(t_server_state *state, t_packet *packet, int *field_bytes_read);
 
 #endif
