@@ -6,11 +6,11 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:25:40 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/12 19:17:58 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/12 19:59:14 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "client.h"
+#include "common.h"
 #define MODULUS 65536
 
 int	calculate_checksum(t_packet *packet)

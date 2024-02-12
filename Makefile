@@ -57,6 +57,11 @@ obj/%.o: $(SERVER_DIR)/%.c
 	@mkdir -p obj
 	@$(CC) $(CFLAGS) -c $< -o $@
 
+obj/%.o: $(COMMON_DIR)/%.c
+	@echo "${YELLOW}Compiling $<...${NO_COLOR}"
+	@mkdir -p obj
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
 	@echo "${RED}Cleaning object files...${NO_COLOR}"
 	@rm -rf obj
