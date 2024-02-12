@@ -6,14 +6,15 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:26 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/12 19:06:48 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/12 22:09:11 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_H
 # define SERVER_H
 
-#include "common.h"
+# define TIMEOUT 100000000
+# include "common.h"
 
 typedef struct s_byte
 {
@@ -39,5 +40,6 @@ void	handle_byte(unsigned char byte, t_packet *packet,
 void	handle_complete_packet(t_server_state *state, t_packet *packet);
 bool	valid_checksum(t_packet *packet);
 void    print_message(t_packet *packet);
+void 	handle_timeout(t_server_state *state, t_packet *packet);
 
 #endif

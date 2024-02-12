@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/12 19:17:42 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/12 22:09:22 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(void)
 	t_server_state	state;
 	t_packet		packet;
 	int				field_bytes_read;
+	unsigned long long int time;
 
 	initialize_server(&state, &packet, &field_bytes_read);
 	while (true)
@@ -49,9 +50,13 @@ int	main(void)
 			g_byte.byte = 0;
 			g_byte.bits_written = 0;
 		}
-		if (state == PACKET_COMPLETE)
+		if (state == WAITING_PACKET)
+			time = 0;
+		else if (state == PACKET_COMPLETE)
 			handle_complete_packet(&state, &packet);
-		pause();
+		if (time > TIMEOUT)
+			handle_timeout(&state, &packet);
+		time++;
 	}
 	return (0);
 }
