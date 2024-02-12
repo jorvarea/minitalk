@@ -6,11 +6,11 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 19:25:49 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 20:55:48 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/12 19:17:25 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_utils.h"
+#include "server.h"
 
 static void	read_checksum(unsigned char byte, t_packet *packet,
 		t_server_state *state, int *field_bytes_read)

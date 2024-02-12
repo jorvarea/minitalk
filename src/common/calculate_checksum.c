@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_message.c                                    :+:      :+:    :+:   */
+/*   calculate_checksum.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 19:32:19 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 19:33:45 by jorvarea         ###   ########.fr       */
+/*   Created: 2024/02/10 15:25:40 by jorvarea          #+#    #+#             */
+/*   Updated: 2024/02/12 19:17:58 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_utils.h"
+#include "client.h"
+#define MODULUS 65536
 
-void	print_message(t_packet *packet)
+int	calculate_checksum(t_packet *packet)
 {
+	int	sum;
 	int	i;
 
+	sum = 0;
+	sum += packet->payload_length;
 	i = 0;
 	while (i < packet->payload_length)
-		ft_printf("%c", packet->data[i++]);
+		sum = (sum + (unsigned char)packet->data[i++]) % MODULUS;
+	return (sum);
 }

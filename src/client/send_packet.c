@@ -6,11 +6,11 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 16:30:31 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/10 17:39:50 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/12 19:18:14 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_utils.h"
+#include "client.h"
 
 static void	send_field(int field, int field_size, int server_pid,
 		int signal_interval)
