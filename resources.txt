@@ -9,3 +9,15 @@ https://www.geeksforgeeks.org/signals-c-language/
 https://www.geeksforgeeks.org/signals-c-set-2/?ref=gcse
 
 https://www.geeksforgeeks.org/write-a-c-program-that-doesnt-terminate-when-ctrlc-is-pressed/?ref=gcse
+
+# Other students
+
+https://medium.com/@oduwoledare/42-minitalk-explained-5b236adc2c24
+
+# Difference between signal and sigaction
+
+https://itecnote.com/tecnote/the-difference-between-sigaction-and-signal/
+
+# How to write advanced signal handlers in Unix
+
+https://www.oracle.com/technical-resources/articles/it-infrastructure/dev-signal-handlers-studio.html
