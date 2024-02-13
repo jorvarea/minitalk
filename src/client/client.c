@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 18:16:36 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:26:20 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,26 @@ int	main(int argc, char **argv)
 	send_packet(&packet, server_pid, 100);
 	while (true)
 	{
+		if (g_byte.bits_written == 2)
+		{
+			if (g_byte.byte == ACK)
+			{
+				ft_printf("Message received successfully\n");
+				exit(0);
+			}
+			else if (g_byte.byte == ASKING_RETRANSMISSION)
+			{
+				ft_printf("Retransmission signal received. Retransmitting...\n");
+				send_packet(&packet, server_pid, 100);
+			}
+			else if (g_byte.byte == COLLISION_DETECTED)
+			{
+				ft_printf("Collision detected. Sleeping...\n");
+				usleep(10000);
+				ft_printf("Retrying...\n");
+				send_packet(&packet, server_pid, 100);
+			}
+		}
 		pause();
 	}
 	return (0);
