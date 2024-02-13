@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:26 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 21:37:25 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:47:07 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "common.h"
 
-# define RESPONSE_SIGNAL_INTERVAL 	1000
+# define RESPONSE_SIGNAL_INTERVAL 1000
 
 typedef enum e_server_state
 {

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 21:30:47 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:39:18 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,40 +22,6 @@ static void	signal_handler(int sig_num, siginfo_t *info, void *context)
 	if (sig_num == SIGUSR2)
 		g_byte.byte += (1 << g_byte.bits_written);
 	g_byte.bits_written++;
-}
-
-void	handle_server_response(t_packet *packet, int server_pid,
-		int *signal_interval)
-{
-	if (g_byte.byte == ACK)
-	{
-		ft_printf("\033[0;32m");
-		ft_printf("Message received successfully\n");
-		ft_printf("\033[0m");
-		exit(0);
-	}
-	else if (g_byte.byte == ASKING_RETRANSMISSION)
-	{
-		ft_printf("\033[0;33m");
-		ft_printf("Retransmission signal received. ");
-		ft_printf("Retransmitting with %d us signal interval...\n", 
-			*signal_interval);
-		ft_printf("\033[0m");
-		g_byte.stop_signal = false;
-		*signal_interval *= 2;
-		send_packet(packet, server_pid, *signal_interval);
-	}
-	else if (g_byte.byte == COLLISION_DETECTED)
-	{
-		ft_printf("\033[0;33m");
-		ft_printf("Collision detected. Sleeping...\n");
-		usleep(COLLISION_DELAY);
-		ft_printf("Retrying...\n");
-		ft_printf("\033[0m");
-		g_byte.stop_signal = false;
-		send_packet(packet, server_pid, *signal_interval);
-	}
-	reset_byte();
 }
 
 void	initialize_client(int argc, char **argv, int *server_pid,

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 21:36:00 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:41:51 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "common.h"
 
+# define MAX_PAYLOAD 65535
 # define COLLISION_DELAY 100000
 
 typedef enum e_server_response
@@ -31,8 +32,12 @@ typedef struct s_byte
 	volatile int			bits_written;
 }							t_byte;
 
+extern t_byte				g_byte;
+
 void						packet_message(char *message, t_packet *packet);
 void						send_packet(t_packet *packet, int server_pid,
 								int signal_interval);
+void						handle_server_response(t_packet *packet,
+								int server_pid, int *signal_interval);
 
 #endif

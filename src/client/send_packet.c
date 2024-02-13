@@ -6,13 +6,11 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 16:30:31 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 20:26:05 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:40:33 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
-
-extern t_byte	g_byte;
 
 static void	send_field(int field, int field_size, int server_pid,
 		int signal_interval)
