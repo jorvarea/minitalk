@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:39:33 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 21:54:23 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 22:13:26 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static void	handle_collision(t_packet *packet, int server_pid,
 static void	handle_retransmission(t_packet *packet, int server_pid,
 		int *signal_interval)
 {
+	*signal_interval *= 2;
 	ft_printf("\033[0;33m");
 	ft_printf("Retransmission signal received. ");
 	ft_printf("Current signal interval %d us. ", *signal_interval);
 	ft_printf("Retransmitting...\n");
 	ft_printf("\033[0m");
 	g_byte.stop_signal = false;
-	*signal_interval *= 2;
 	send_packet(packet, server_pid, *signal_interval);
 }
 
