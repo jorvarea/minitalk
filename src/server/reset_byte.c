@@ -12,8 +12,8 @@
 
 #include "server.h"
 
-void reset_byte(void)
+void	reset_byte(void)
 {
-    g_byte.byte = 0;
-    g_byte.bits_written = 0;
+	g_byte.byte = 0;
+	g_byte.bits_written = 0;
 }

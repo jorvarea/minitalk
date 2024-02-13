@@ -12,7 +12,7 @@
 
 #include "server.h"
 
-t_byte		g_byte;
+t_byte	g_byte;
 
 void	signal_handler(int sig_num)
 {
@@ -55,8 +55,8 @@ int	main(void)
 	t_packet			packet;
 	unsigned int		field_bytes_read;
 	t_timer				timer;
-	struct	sigaction 	sig_action;
-	
+	struct sigaction	sig_action;
+
 	initialize_server(&state, &packet, &field_bytes_read, &timer.timeout);
 	ft_memset(&sig_action, 0, sizeof(sig_action));
 	while (true)

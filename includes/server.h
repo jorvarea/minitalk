@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:26 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 13:49:55 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 13:54:09 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ typedef enum e_server_state
 
 typedef struct s_timer
 {
-	unsigned int time;
-	unsigned int timeout;
-}				 t_timer;
+	unsigned int			time;
+	unsigned int			timeout;
+}							t_timer;
 
 extern t_byte				g_byte;
 
@@ -43,7 +43,7 @@ void						show_banner(void);
 void						handle_byte(unsigned char byte, t_packet *packet,
 								t_server_state *state,
 								unsigned int *field_bytes_read);
-							void reset_byte(void);
+void						reset_byte(void);
 void						handle_complete_packet(t_server_state *state,
 								t_packet *packet,
 								unsigned int *field_bytes_read);
