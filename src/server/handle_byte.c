@@ -6,14 +6,14 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 19:25:49 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/12 19:17:25 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 02:52:00 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
 static void	read_checksum(unsigned char byte, t_packet *packet,
-		t_server_state *state, int *field_bytes_read)
+		t_server_state *state, unsigned int *field_bytes_read)
 {
 	if (*field_bytes_read == 0)
 	{
@@ -31,7 +31,7 @@ static void	read_checksum(unsigned char byte, t_packet *packet,
 }
 
 static void	read_payload_length(unsigned char byte, t_packet *packet,
-		t_server_state *state, int *field_bytes_read)
+		t_server_state *state, unsigned int *field_bytes_read)
 {
 	if (*field_bytes_read == 0)
 	{
@@ -49,7 +49,7 @@ static void	read_payload_length(unsigned char byte, t_packet *packet,
 }
 
 void	handle_byte(unsigned char byte, t_packet *packet, t_server_state *state,
-		int *field_bytes_read)
+		unsigned int *field_bytes_read)
 {
 	if (*state == WAITING_PACKET)
 		*state = READING_PAYLOAD_LENGTH;

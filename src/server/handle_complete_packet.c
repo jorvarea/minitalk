@@ -6,13 +6,14 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 20:26:36 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/12 22:13:50 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 02:50:48 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
-void	handle_complete_packet(t_server_state *state, t_packet *packet, int *field_bytes_read)
+void	handle_complete_packet(t_server_state *state, t_packet *packet,
+		unsigned int *field_bytes_read)
 {
 	if (valid_checksum(packet))
 		print_message(packet);

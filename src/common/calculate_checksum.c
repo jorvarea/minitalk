@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:25:40 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/12 19:59:14 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 02:49:42 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int	calculate_checksum(t_packet *packet)
 {
-	int	sum;
-	int	i;
+	unsigned int	sum;
+	unsigned int	i;
 
 	sum = 0;
 	sum += packet->payload_length;

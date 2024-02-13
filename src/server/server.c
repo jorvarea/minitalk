@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 02:33:07 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 02:53:48 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,21 @@ void	signal_handler(int sig_num)
 	g_byte.bits_written++;
 }
 
+bool	timeout_conditions(t_server_state state, unsigned int payload_length,
+		unsigned int timer, unsigned int timeout)
+{
+	bool	is_timeout;
+
+	is_timeout = false;
+	if (state == READING_PAYLOAD_LENGTH && timer > (2 * timeout))
+		is_timeout = true;
+	else if (state == READING_DATA && timer > (timeout * payload_length))
+		is_timeout = true;
+	return (is_timeout);
+}
+
 void	initialize_server(t_server_state *state, t_packet *packet,
-		int *field_bytes_read)
+		unsigned int *field_bytes_read, unsigned int *timeout)
 {
 	show_banner();
 	print_server_pid();
@@ -31,19 +44,19 @@ void	initialize_server(t_server_state *state, t_packet *packet,
 	*state = WAITING_PACKET;
 	packet->data = NULL;
 	*field_bytes_read = 0;
+	*timeout = 800;
 	ft_printf("\nReceived messages: ");
 }
 
 int	main(void)
 {
-	t_server_state			state;
-	t_packet				packet;
-	int						field_bytes_read;
-	unsigned int			timeout;
-	unsigned long long int 	timer;
+	t_server_state	state;
+	t_packet		packet;
+	unsigned int	field_bytes_read;
+	unsigned int	timeout;
+	unsigned int	timer;
 
-	initialize_server(&state, &packet, &field_bytes_read);
-	timeout = 800;
+	initialize_server(&state, &packet, &field_bytes_read, &timeout);
 	while (true)
 	{
 		if (g_byte.bits_written >= 8)
@@ -56,7 +69,7 @@ int	main(void)
 			handle_complete_packet(&state, &packet, &field_bytes_read);
 		if (state == WAITING_PACKET || state == READING_CHECKSUM)
 			timer = 0;
-		if ((state == READING_PAYLOAD_LENGTH && timer > (2 * timeout)) || (state == READING_DATA && timer > (timeout * packet.payload_length)))
+		if (timeout_conditions(state, packet.payload_length, timer, timeout))
 			handle_timeout(&state, &packet, &field_bytes_read);
 		timer++;
 		usleep(1);

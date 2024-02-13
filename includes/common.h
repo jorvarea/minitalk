@@ -22,11 +22,11 @@
 
 typedef struct s_packet
 {
-	unsigned int			payload_length;
-	unsigned int			check_sum;
-	char					*data;
-}							t_packet;
+	unsigned int	payload_length;
+	unsigned int	check_sum;
+	char			*data;
+}					t_packet;
 
-int		calculate_checksum(t_packet *packet);
+int					calculate_checksum(t_packet *packet);
 
 #endif

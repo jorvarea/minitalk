@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 16:30:31 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/12 19:18:14 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 02:54:27 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	send_field(int field, int field_size, int server_pid,
 
 void	send_packet(t_packet *packet, int server_pid, int signal_interval)
 {
-	int	i;
+	unsigned int	i;
 
 	send_field(packet->payload_length, PAYLOAD_LENGTH_BYTES, server_pid,
 		signal_interval);

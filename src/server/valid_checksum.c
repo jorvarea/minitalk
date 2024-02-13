@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 19:27:16 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/12 19:17:51 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 02:54:04 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	valid_checksum(t_packet *packet)
 {
-	int	checksum;
+	unsigned int	checksum;
 
 	checksum = calculate_checksum(packet);
 	return (checksum == packet->check_sum);
