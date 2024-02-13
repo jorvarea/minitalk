@@ -47,17 +47,17 @@ $(PRINTF):
 	@echo "${GREEN}Making printf...${NO_COLOR}"
 	@$(MAKE) -C $(PRINTF_DIR)
 
-obj/%.o: $(CLIENT_DIR)/%.c 
+obj/%.o: $(CLIENT_DIR)/%.c includes/common.h includes/client.h
 	@echo "${YELLOW}Compiling $<...${NO_COLOR}"
 	@mkdir -p obj
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-obj/%.o: $(SERVER_DIR)/%.c
+obj/%.o: $(SERVER_DIR)/%.c includes/common.h includes/server.h
 	@echo "${YELLOW}Compiling $<...${NO_COLOR}"
 	@mkdir -p obj
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-obj/%.o: $(COMMON_DIR)/%.c
+obj/%.o: $(COMMON_DIR)/%.c includes/common.h
 	@echo "${YELLOW}Compiling $<...${NO_COLOR}"
 	@mkdir -p obj
 	@$(CC) $(CFLAGS) -c $< -o $@
