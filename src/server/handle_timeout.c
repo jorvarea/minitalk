@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 22:01:04 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 17:35:41 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:32:03 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	handle_timeout(t_server_state *state, t_packet *packet,
 	packet->data = NULL;
 	ask_retransmission(g_byte.sender_pid);
 	reset_byte();
+	g_byte.sender_pid = 0;
 }

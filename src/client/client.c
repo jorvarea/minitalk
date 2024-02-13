@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 18:37:01 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:34:19 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void handle_server_response(t_packet *packet, int server_pid)
 {
 	if (g_byte.byte == ACK)
 	{
+		ft_printf("\033[0;32m");
 		ft_printf("Message received successfully\n");
+		ft_printf("\033[0;32m");
 		exit(0);
 	}
 	else if (g_byte.byte == ASKING_RETRANSMISSION)
@@ -48,16 +50,19 @@ void initialize_client(int argc, char **argv, int *server_pid)
 {
 	if (argc != 3)
 	{
+		ft_printf("\033[0;31m");
 		ft_printf("Error: Invalid argument count\n");
+		ft_printf("\033[0;31m");
 		exit(1);
 	}
 	*server_pid = ft_atoi(argv[1]);
 	if (server_pid <= 0)
 	{
+		ft_printf("\033[0;31m");
 		ft_printf("Error: Invalid server PID\n");
+		ft_printf("\033[0;31m");
 		exit(1);
 	}
-	reset_byte();
 }
 
 int	main(int argc, char **argv)
