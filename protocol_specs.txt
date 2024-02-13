@@ -1,4 +1,11 @@
+## client -> server ##
 payload_lenght | check_sum | data
 
 payload_lenght: 2 bytes (in bytes)
 check_sum: 2 bytes
+
+## server -> client ##
+2 bits
+00: message ACK
+01: Send message again
+02: Collision detected (multiclient)
