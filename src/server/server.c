@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 02:53:48 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 13:44:27 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	signal_handler(int sig_num)
 	g_byte.bits_written++;
 }
 
-bool	timeout_conditions(t_server_state state, unsigned int payload_length,
-		unsigned int timer, unsigned int timeout)
+bool	timeout_conditions(t_server_state state, unsigned int payload_length, 
+			t_timer *timer)
 {
 	bool	is_timeout;
 
 	is_timeout = false;
-	if (state == READING_PAYLOAD_LENGTH && timer > (2 * timeout))
+	if (state == READING_PAYLOAD_LENGTH && timer->time > (2 * timer->timeout))
 		is_timeout = true;
-	else if (state == READING_DATA && timer > (timeout * payload_length))
+	else if (state == READING_DATA && timer->time > (timer->timeout * payload_length))
 		is_timeout = true;
 	return (is_timeout);
 }
@@ -53,10 +53,9 @@ int	main(void)
 	t_server_state	state;
 	t_packet		packet;
 	unsigned int	field_bytes_read;
-	unsigned int	timeout;
-	unsigned int	timer;
+	t_timer 		timer;
 
-	initialize_server(&state, &packet, &field_bytes_read, &timeout);
+	initialize_server(&state, &packet, &field_bytes_read, &timer.timeout);
 	while (true)
 	{
 		if (g_byte.bits_written >= 8)
@@ -68,10 +67,10 @@ int	main(void)
 		if (state == PACKET_COMPLETE)
 			handle_complete_packet(&state, &packet, &field_bytes_read);
 		if (state == WAITING_PACKET || state == READING_CHECKSUM)
-			timer = 0;
-		if (timeout_conditions(state, packet.payload_length, timer, timeout))
+			timer.time = 0;
+		if (timeout_conditions(state, packet.payload_length, &timer))
 			handle_timeout(&state, &packet, &field_bytes_read);
-		timer++;
+		timer.time++;
 		usleep(1);
 	}
 	return (0);

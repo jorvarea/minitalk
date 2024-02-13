@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:26 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 02:51:15 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 13:42:02 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ typedef enum e_server_state
 	READING_DATA = 3,
 	PACKET_COMPLETE = 4,
 }							t_server_state;
+
+typedef struct s_timer
+{
+	unsigned int time;
+	unsigned int timeout;
+}				 t_timer;
 
 extern t_byte				g_byte;
 
