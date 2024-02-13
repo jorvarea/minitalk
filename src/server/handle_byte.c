@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 19:25:49 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 02:52:00 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 13:48:47 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,5 @@ void	handle_byte(unsigned char byte, t_packet *packet, t_server_state *state,
 			*field_bytes_read = 0;
 		}
 	}
+	reset_byte();
 }
