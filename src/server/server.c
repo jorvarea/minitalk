@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 18:52:11 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:20:29 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	initialize_server(t_server_state *state, t_packet *packet,
 	*state = WAITING_PACKET;
 	packet->data = NULL;
 	*field_bytes_read = 0;
-	*timeout = 800;
+	*timeout = 8 * INITIAL_SIGNAL_INTERVAL;
+	ft_printf("\nCurrent timeout: %d us\n", *timeout);
 	ft_printf("\nReceived messages: ");
 }
 
@@ -56,11 +57,11 @@ int	main(void)
 		if (g_byte.bits_written >= 8)
 			handle_byte(g_byte.byte, &packet, &state, &field_bytes_read);
 		if (state == PACKET_COMPLETE)
-			handle_complete_packet(&state, &packet, &field_bytes_read);
+			handle_complete_packet(&state, &packet, &field_bytes_read, &timer);
 		if (state == WAITING_PACKET || state == READING_CHECKSUM)
 			timer.time = 0;
 		if (timeout_conditions(state, packet.payload_length, &timer))
-			handle_timeout(&state, &packet, &field_bytes_read);
+			handle_timeout(&state, &packet, &field_bytes_read, &timer);
 		timer.time++;
 		usleep(1);
 	}
