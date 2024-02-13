@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 18:31:33 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:37:01 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void handle_server_response(t_packet *packet, int server_pid)
 		ft_printf("Retrying...\n");
 		send_packet(packet, server_pid, 100);
 	}
-	reset_byte();
 }
 
 void initialize_client(int argc, char **argv, int *server_pid)

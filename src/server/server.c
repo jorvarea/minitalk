@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 18:02:57 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:52:11 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ static void	signal_handler(int sig_num, siginfo_t *info, void *context)
 	(void)context;
 	if (g_byte.sender_pid == 0)
 		g_byte.sender_pid = info->si_pid;
-	else if (g_byte.sender_pid != info->si_pid)
+	if (info->si_pid == g_byte.sender_pid)
+	{
+		if (sig_num == SIGUSR2)
+			g_byte.byte += (1 << (7 - g_byte.bits_written));
+		g_byte.bits_written++;
+	}
+	else
 		send_collision_signal(info->si_pid);
-	if (sig_num == SIGUSR2)
-		g_byte.byte += (1 << (7 - g_byte.bits_written));
-	g_byte.bits_written++;
 }
 
 void	initialize_server(t_server_state *state, t_packet *packet,
