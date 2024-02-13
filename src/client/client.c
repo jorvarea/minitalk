@@ -12,7 +12,7 @@
 
 #include "client.h"
 
-t_byte g_byte;
+t_byte		g_byte;
 
 static void	signal_handler(int sig_num, siginfo_t *info, void *context)
 {
@@ -24,7 +24,7 @@ static void	signal_handler(int sig_num, siginfo_t *info, void *context)
 	g_byte.bits_written++;
 }
 
-void handle_server_response(t_packet *packet, int server_pid)
+void	handle_server_response(t_packet *packet, int server_pid)
 {
 	if (g_byte.byte == ACK)
 	{
@@ -53,7 +53,7 @@ void handle_server_response(t_packet *packet, int server_pid)
 	}
 }
 
-void initialize_client(int argc, char **argv, int *server_pid)
+void	initialize_client(int argc, char **argv, int *server_pid)
 {
 	if (argc != 3)
 	{

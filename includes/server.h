@@ -51,6 +51,7 @@ bool						timeout_conditions(t_server_state state,
 void						handle_timeout(t_server_state *state,
 								t_packet *packet,
 								unsigned int *field_bytes_read);
-void 						reset_state(t_server_state *state, t_packet *packet, unsigned int *field_bytes_read);
+void						reset_state(t_server_state *state, t_packet *packet,
+								unsigned int *field_bytes_read);
 
 #endif

@@ -12,10 +12,11 @@
 
 #include "server.h"
 
-void reset_state(t_server_state *state, t_packet *packet, unsigned int *field_bytes_read)
+void	reset_state(t_server_state *state, t_packet *packet,
+		unsigned int *field_bytes_read)
 {
 	*state = WAITING_PACKET;
-    *field_bytes_read = 0;
+	*field_bytes_read = 0;
 	g_byte.sender_pid = 0;
 	reset_byte();
 	free(packet->data);

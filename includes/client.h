@@ -17,10 +17,10 @@
 
 typedef enum e_server_response
 {
-    ACK = 0,
-    ASKING_RETRANSMISSION = 1,
-    COLLISION_DETECTED = 2,
-}           t_server_response;
+	ACK = 0,
+	ASKING_RETRANSMISSION = 1,
+	COLLISION_DETECTED = 2,
+}							t_server_response;
 
 typedef struct s_byte
 {
@@ -29,7 +29,8 @@ typedef struct s_byte
 	volatile int			bits_written;
 }							t_byte;
 
-void	packet_message(char *message, t_packet *packet);
-void	send_packet(t_packet *packet, int server_pid, int signal_interval);
+void						packet_message(char *message, t_packet *packet);
+void						send_packet(t_packet *packet, int server_pid,
+								int signal_interval);
 
 #endif

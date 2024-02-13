@@ -12,7 +12,7 @@
 
 #include "server.h"
 
-t_byte	g_byte;
+t_byte		g_byte;
 
 static void	signal_handler(int sig_num, siginfo_t *info, void *context)
 {

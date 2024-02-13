@@ -12,7 +12,7 @@
 
 #include "client.h"
 
-extern t_byte g_byte;
+extern t_byte	g_byte;
 
 static void	send_field(int field, int field_size, int server_pid,
 		int signal_interval)
