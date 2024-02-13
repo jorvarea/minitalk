@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:26 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 14:24:31 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 17:24:29 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef struct s_byte
 {
+	volatile int  			sender_pid;
 	volatile unsigned char	byte;
 	volatile int			bits_written;
 }							t_byte;
