@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 13:59:22 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:21:59 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 t_byte	g_byte;
 
-void	signal_handler(int sig_num)
+void	signal_handler(int sig_num, siginfo_t *info, void *context)
 {
+	(void)context;
+	(void)info;
 	if (sig_num == SIGUSR2)
 		g_byte.byte += (1 << (7 - g_byte.bits_written));
 	g_byte.bits_written++;
@@ -40,8 +42,6 @@ void	initialize_server(t_server_state *state, t_packet *packet,
 {
 	show_banner();
 	print_server_pid();
-	signal(SIGUSR1, signal_handler);
-	signal(SIGUSR2, signal_handler);
 	*state = WAITING_PACKET;
 	packet->data = NULL;
 	*field_bytes_read = 0;
@@ -49,10 +49,13 @@ void	initialize_server(t_server_state *state, t_packet *packet,
 	ft_printf("\nReceived messages: ");
 }
 
-void initialize_sigaction(struct sigaction *sig_action)
+void	initialize_sigaction(struct sigaction *sig_action)
 {
 	ft_memset(sig_action, 0, sizeof(struct sigaction));
 	sig_action->sa_flags = SA_RESTART | SA_SIGINFO;
+	sig_action->sa_sigaction = signal_handler;
+	sigaction(SIGUSR1, sig_action, NULL);
+	sigaction(SIGUSR2, sig_action, NULL);
 }
 
 int	main(void)
