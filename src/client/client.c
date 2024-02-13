@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 20:22:04 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 20:28:08 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	signal_handler(int sig_num, siginfo_t *info, void *context)
 {
 	(void)context;
 	(void)info;
-	g_byte.stop_signal = 1;
+	g_byte.stop_signal = true;
 	if (sig_num == SIGUSR2)
 		g_byte.byte += (1 << g_byte.bits_written);
 	g_byte.bits_written++;
@@ -38,7 +38,7 @@ void	handle_server_response(t_packet *packet, int server_pid)
 		ft_printf("\033[0;33m");
 		ft_printf("Retransmission signal received. Retransmitting...\n");
 		ft_printf("\033[0m");
-		g_byte.stop_signal = 0;
+		g_byte.stop_signal = false;
 		send_packet(packet, server_pid, 100);
 	}
 	else if (g_byte.byte == COLLISION_DETECTED)
@@ -48,7 +48,7 @@ void	handle_server_response(t_packet *packet, int server_pid)
 		usleep(10000);
 		ft_printf("Retrying...\n");
 		ft_printf("\033[0m");
-		g_byte.stop_signal = 0;
+		g_byte.stop_signal = false;
 		send_packet(packet, server_pid, 100);
 	}
 }

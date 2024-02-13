@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 20:11:07 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 20:25:52 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef enum e_server_response
 
 typedef struct s_byte
 {
-	volatile int			stop_signal;
+	volatile bool			stop_signal;
 	volatile unsigned char	byte;
 	volatile int			bits_written;
 }							t_byte;
