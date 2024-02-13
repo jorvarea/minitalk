@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:26 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 13:54:09 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:24:31 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void						handle_complete_packet(t_server_state *state,
 								unsigned int *field_bytes_read);
 bool						valid_checksum(t_packet *packet);
 void						print_message(t_packet *packet);
+bool						timeout_conditions(t_server_state state,
+								unsigned int payload_length, t_timer *timer);
 void						handle_timeout(t_server_state *state,
 								t_packet *packet,
 								unsigned int *field_bytes_read);

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 14:21:59 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:24:04 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,6 @@ void	signal_handler(int sig_num, siginfo_t *info, void *context)
 	if (sig_num == SIGUSR2)
 		g_byte.byte += (1 << (7 - g_byte.bits_written));
 	g_byte.bits_written++;
-}
-
-bool	timeout_conditions(t_server_state state, unsigned int payload_length,
-		t_timer *timer)
-{
-	bool	is_timeout;
-
-	is_timeout = false;
-	if (state == READING_PAYLOAD_LENGTH && timer->time > (2 * timer->timeout))
-		is_timeout = true;
-	else if (state == READING_DATA && timer->time > (timer->timeout
-			* payload_length))
-		is_timeout = true;
-	return (is_timeout);
 }
 
 void	initialize_server(t_server_state *state, t_packet *packet,
