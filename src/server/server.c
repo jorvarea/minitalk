@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 21:20:29 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:55:17 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	initialize_server(t_server_state *state, t_packet *packet,
 	packet->data = NULL;
 	*field_bytes_read = 0;
 	*timeout = 8 * INITIAL_SIGNAL_INTERVAL;
-	ft_printf("\nCurrent timeout: %d us\n", *timeout);
+	ft_printf("Current timeout: %d us\n", *timeout);
 	ft_printf("\nReceived messages: ");
 }
 
