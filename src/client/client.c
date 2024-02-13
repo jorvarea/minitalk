@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 21:12:55 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:30:47 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static void	signal_handler(int sig_num, siginfo_t *info, void *context)
 	g_byte.bits_written++;
 }
 
-void	handle_server_response(t_packet *packet, int server_pid, int *signal_interval)
+void	handle_server_response(t_packet *packet, int server_pid,
+		int *signal_interval)
 {
 	if (g_byte.byte == ACK)
 	{
@@ -36,7 +37,9 @@ void	handle_server_response(t_packet *packet, int server_pid, int *signal_interv
 	else if (g_byte.byte == ASKING_RETRANSMISSION)
 	{
 		ft_printf("\033[0;33m");
-		ft_printf("Retransmission signal received. Retransmitting with %d signal interval...\n", *signal_interval);
+		ft_printf("Retransmission signal received. ");
+		ft_printf("Retransmitting with %d us signal interval...\n", 
+			*signal_interval);
 		ft_printf("\033[0m");
 		g_byte.stop_signal = false;
 		*signal_interval *= 2;
@@ -55,7 +58,8 @@ void	handle_server_response(t_packet *packet, int server_pid, int *signal_interv
 	reset_byte();
 }
 
-void	initialize_client(int argc, char **argv, int *server_pid, int *signal_interval)
+void	initialize_client(int argc, char **argv, int *server_pid,
+		int *signal_interval)
 {
 	if (argc != 3)
 	{

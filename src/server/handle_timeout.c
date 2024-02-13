@@ -17,7 +17,8 @@ void	handle_timeout(t_server_state *state, t_packet *packet,
 {
 	timer->timeout *= 2;
 	ft_printf("\033[0;31m");
-	ft_printf("\nTimeout. Asking for retransmission. Current timeout: %d us\n", timer->timeout);
+	ft_printf("\nTimeout. Asking for retransmission. Current timeout: %d us\n",
+		timer->timeout);
 	ft_printf("\033[0m");
 	ask_retransmission(g_byte.sender_pid);
 	reset_state(state, packet, field_bytes_read);
