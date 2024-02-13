@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:26 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 18:06:00 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:52:01 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ bool						timeout_conditions(t_server_state state,
 void						handle_timeout(t_server_state *state,
 								t_packet *packet,
 								unsigned int *field_bytes_read);
+void 						reset_state(t_server_state *state, t_packet *packet, unsigned int *field_bytes_read);
 
 #endif
