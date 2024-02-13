@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/12 22:29:09 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 02:06:11 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	initialize_server(t_server_state *state, t_packet *packet,
 
 int	main(void)
 {
-	t_server_state	state;
-	t_packet		packet;
-	int				field_bytes_read;
-	unsigned long long int timer;
+	t_server_state			state;
+	t_packet				packet;
+	int						field_bytes_read;
+	unsigned long long int 	timer;
 
 	initialize_server(&state, &packet, &field_bytes_read);
 	while (true)
@@ -50,13 +50,14 @@ int	main(void)
 			g_byte.byte = 0;
 			g_byte.bits_written = 0;
 		}
-		else if (state == PACKET_COMPLETE)
+		if (state == PACKET_COMPLETE)
 			handle_complete_packet(&state, &packet, &field_bytes_read);
 		if (state == WAITING_PACKET || state == READING_CHECKSUM)
 			timer = 0;
-		if ((state == READING_PAYLOAD_LENGTH && timer > TIMEOUT) || (state == READING_DATA && timer > TIMEOUT * packet.payload_length))
+		if ((state == READING_PAYLOAD_LENGTH && timer > (2 * TIMEOUT)) || (state == READING_DATA && timer > (TIMEOUT * packet.payload_length)))
 			handle_timeout(&state, &packet, &field_bytes_read);
-		time++;
+		timer++;
+		usleep(1);
 	}
 	return (0);
 }

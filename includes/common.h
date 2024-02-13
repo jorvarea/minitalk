@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:21 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/12 19:19:09 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 00:30:11 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 typedef struct s_packet
 {
-	int						payload_length;
-	int						check_sum;
+	unsigned int			payload_length;
+	unsigned int			check_sum;
 	char					*data;
 }							t_packet;
 

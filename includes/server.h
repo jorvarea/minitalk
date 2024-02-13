@@ -6,14 +6,14 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:26 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/12 22:16:52 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 02:06:21 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_H
 # define SERVER_H
 
-# define TIMEOUT 1000000000
+# define TIMEOUT 800
 # include "common.h"
 
 typedef struct s_byte
