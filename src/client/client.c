@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 19:52:24 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 20:03:16 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ static void	signal_handler(int sig_num, siginfo_t *info, void *context)
 	(void)context;
 	(void)info;
 	if (sig_num == SIGUSR2)
-		g_byte.byte += (1 << (7 - g_byte.bits_written));
+		g_byte.byte += (1 << g_byte.bits_written);
 	g_byte.bits_written++;
 }
 
 void handle_server_response(t_packet *packet, int server_pid)
 {
+	ft_printf("%d", g_byte.byte);
 	if (g_byte.byte == ACK)
 	{
 		ft_printf("\033[0;32m");
