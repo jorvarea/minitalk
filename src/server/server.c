@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 17:29:31 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 17:37:34 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ t_byte	g_byte;
 void send_collision_signal(int pid)
 {
 	kill(pid, SIGUSR2);
+	usleep(100);
 	kill(pid, SIGUSR1);
+	usleep(100);
 }
 
 void	signal_handler(int sig_num, siginfo_t *info, void *context)
