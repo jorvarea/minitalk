@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 13:50:30 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 13:59:22 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ void	initialize_server(t_server_state *state, t_packet *packet,
 	ft_printf("\nReceived messages: ");
 }
 
+void initialize_sigaction(struct sigaction *sig_action)
+{
+	ft_memset(sig_action, 0, sizeof(struct sigaction));
+	sig_action->sa_flags = SA_RESTART | SA_SIGINFO;
+}
+
 int	main(void)
 {
 	t_server_state		state;
@@ -58,7 +64,7 @@ int	main(void)
 	struct sigaction	sig_action;
 
 	initialize_server(&state, &packet, &field_bytes_read, &timer.timeout);
-	ft_memset(&sig_action, 0, sizeof(sig_action));
+	initialize_sigaction(&sig_action);
 	while (true)
 	{
 		if (g_byte.bits_written >= 8)
