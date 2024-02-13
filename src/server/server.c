@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 17:59:24 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:02:57 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_byte	g_byte;
 
-void	signal_handler(int sig_num, siginfo_t *info, void *context)
+static void	signal_handler(int sig_num, siginfo_t *info, void *context)
 {
 	(void)context;
 	if (g_byte.sender_pid == 0)

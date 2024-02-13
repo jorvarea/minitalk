@@ -6,29 +6,51 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/12 22:20:59 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:16:36 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
 
-int	main(int argc, char **argv)
-{
-	t_packet	packet;
-	int			server_pid;
+t_byte g_byte;
 
+static void	signal_handler(int sig_num, siginfo_t *info, void *context)
+{
+	(void)context;
+	(void)info;
+	if (sig_num == SIGUSR2)
+		g_byte.byte += (1 << (7 - g_byte.bits_written));
+	g_byte.bits_written++;
+}
+
+void initialize_client(int argc, char **argv, int *server_pid)
+{
 	if (argc != 3)
 	{
 		ft_printf("Error: Invalid argument count\n");
 		exit(1);
 	}
-	server_pid = ft_atoi(argv[1]);
+	*server_pid = ft_atoi(argv[1]);
 	if (server_pid <= 0)
 	{
 		ft_printf("Error: Invalid server PID\n");
 		exit(1);
 	}
+}
+
+int	main(int argc, char **argv)
+{
+	t_packet			packet;
+	int					server_pid;
+	struct sigaction	sig_action;
+
+	initialize_client(argc, argv, &server_pid);
+	initialize_sigaction(&sig_action, signal_handler);
 	packet_message(argv[2], &packet);
 	send_packet(&packet, server_pid, 100);
+	while (true)
+	{
+		pause();
+	}
 	return (0);
 }
