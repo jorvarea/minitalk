@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 18:26:20 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:31:33 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,28 @@ static void	signal_handler(int sig_num, siginfo_t *info, void *context)
 	g_byte.bits_written++;
 }
 
+void handle_server_response(t_packet *packet, int server_pid)
+{
+	if (g_byte.byte == ACK)
+	{
+		ft_printf("Message received successfully\n");
+		exit(0);
+	}
+	else if (g_byte.byte == ASKING_RETRANSMISSION)
+	{
+		ft_printf("Retransmission signal received. Retransmitting...\n");
+		send_packet(packet, server_pid, 100);
+	}
+	else if (g_byte.byte == COLLISION_DETECTED)
+	{
+		ft_printf("Collision detected. Sleeping...\n");
+		usleep(10000);
+		ft_printf("Retrying...\n");
+		send_packet(packet, server_pid, 100);
+	}
+	reset_byte();
+}
+
 void initialize_client(int argc, char **argv, int *server_pid)
 {
 	if (argc != 3)
@@ -36,6 +58,7 @@ void initialize_client(int argc, char **argv, int *server_pid)
 		ft_printf("Error: Invalid server PID\n");
 		exit(1);
 	}
+	reset_byte();
 }
 
 int	main(int argc, char **argv)
@@ -51,25 +74,7 @@ int	main(int argc, char **argv)
 	while (true)
 	{
 		if (g_byte.bits_written == 2)
-		{
-			if (g_byte.byte == ACK)
-			{
-				ft_printf("Message received successfully\n");
-				exit(0);
-			}
-			else if (g_byte.byte == ASKING_RETRANSMISSION)
-			{
-				ft_printf("Retransmission signal received. Retransmitting...\n");
-				send_packet(&packet, server_pid, 100);
-			}
-			else if (g_byte.byte == COLLISION_DETECTED)
-			{
-				ft_printf("Collision detected. Sleeping...\n");
-				usleep(10000);
-				ft_printf("Retrying...\n");
-				send_packet(&packet, server_pid, 100);
-			}
-		}
+			handle_server_response(&packet, server_pid);
 		pause();
 	}
 	return (0);
