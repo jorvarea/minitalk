@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 21:39:18 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 22:07:48 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	main(int argc, char **argv)
 	initialize_sigaction(&sig_action, signal_handler);
 	packet_message(argv[2], &packet);
 	send_packet(&packet, server_pid, signal_interval);
+	ft_printf("Initial signal interval: %d us\n", signal_interval);
 	while (true)
 	{
 		if (g_byte.bits_written == 2)

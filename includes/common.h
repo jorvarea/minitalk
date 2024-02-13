@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:21 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 21:48:06 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 22:09:22 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # define PAYLOAD_LENGTH_BYTES 2
 # define CHECK_SUM_BYTES 2
-# define INITIAL_SIGNAL_INTERVAL 50
+# define INITIAL_SIGNAL_INTERVAL 15
 
 typedef struct s_packet
 {
