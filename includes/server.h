@@ -17,7 +17,7 @@
 
 typedef struct s_byte
 {
-	volatile int  			sender_pid;
+	volatile int			sender_pid;
 	volatile unsigned char	byte;
 	volatile int			bits_written;
 }							t_byte;
@@ -45,8 +45,8 @@ void						handle_byte(unsigned char byte, t_packet *packet,
 								t_server_state *state,
 								unsigned int *field_bytes_read);
 void						reset_byte(void);
-void 						send_ack (int pid);
-void 						ask_retransmission(int pid);
+void						send_ack(int pid);
+void						ask_retransmission(int pid);
 void						handle_complete_packet(t_server_state *state,
 								t_packet *packet,
 								unsigned int *field_bytes_read);

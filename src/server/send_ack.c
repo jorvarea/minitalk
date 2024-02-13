@@ -12,9 +12,9 @@
 
 #include "server.h"
 
-void send_ack (int pid)
+void	send_ack(int pid)
 {
-    kill(pid, SIGUSR1);
+	kill(pid, SIGUSR1);
 	usleep(100);
 	kill(pid, SIGUSR1);
 	usleep(100);

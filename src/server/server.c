@@ -14,7 +14,7 @@
 
 t_byte	g_byte;
 
-void send_collision_signal(int pid)
+void	send_collision_signal(int pid)
 {
 	kill(pid, SIGUSR2);
 	usleep(100);
