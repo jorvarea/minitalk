@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:26 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 19:52:01 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 20:10:51 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ typedef enum e_server_state
 	READING_DATA = 3,
 	PACKET_COMPLETE = 4,
 }							t_server_state;
+
+typedef struct s_byte
+{
+	volatile int			sender_pid;
+	volatile unsigned char	byte;
+	volatile int			bits_written;
+}							t_byte;
 
 extern t_byte				g_byte;
 

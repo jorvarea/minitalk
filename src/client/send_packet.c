@@ -6,11 +6,13 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 16:30:31 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 02:54:27 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 20:12:40 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
+
+extern t_byte g_byte;
 
 static void	send_field(int field, int field_size, int server_pid,
 		int signal_interval)
@@ -21,7 +23,7 @@ static void	send_field(int field, int field_size, int server_pid,
 
 	field_bits = 8 * field_size;
 	i = 0;
-	while (i < field_bits)
+	while (i < field_bits && g_byte.stop_signal == 0)
 	{
 		bits_to_move = field_bits - 1 - i;
 		if (((field >> bits_to_move) & 1) == 0)
@@ -41,7 +43,7 @@ void	send_packet(t_packet *packet, int server_pid, int signal_interval)
 		signal_interval);
 	send_field(packet->check_sum, CHECK_SUM_BYTES, server_pid, signal_interval);
 	i = 0;
-	while (i < packet->payload_length)
+	while (i < packet->payload_length && g_byte.stop_signal == 0)
 	{
 		send_field(packet->data[i], 1, server_pid, signal_interval);
 		i++;
