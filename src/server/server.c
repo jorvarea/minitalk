@@ -6,21 +6,13 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 17:37:34 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/13 17:59:24 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
 t_byte	g_byte;
-
-void	send_collision_signal(int pid)
-{
-	kill(pid, SIGUSR2);
-	usleep(100);
-	kill(pid, SIGUSR1);
-	usleep(100);
-}
 
 void	signal_handler(int sig_num, siginfo_t *info, void *context)
 {
@@ -46,15 +38,6 @@ void	initialize_server(t_server_state *state, t_packet *packet,
 	ft_printf("\nReceived messages: ");
 }
 
-void	initialize_sigaction(struct sigaction *sig_action)
-{
-	ft_memset(sig_action, 0, sizeof(struct sigaction));
-	sig_action->sa_flags = SA_RESTART | SA_SIGINFO;
-	sig_action->sa_sigaction = signal_handler;
-	sigaction(SIGUSR1, sig_action, NULL);
-	sigaction(SIGUSR2, sig_action, NULL);
-}
-
 int	main(void)
 {
 	t_server_state		state;
@@ -64,7 +47,7 @@ int	main(void)
 	struct sigaction	sig_action;
 
 	initialize_server(&state, &packet, &field_bytes_read, &timer.timeout);
-	initialize_sigaction(&sig_action);
+	initialize_sigaction(&sig_action, signal_handler);
 	while (true)
 	{
 		if (g_byte.bits_written >= 8)
