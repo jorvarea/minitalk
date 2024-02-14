@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/14 21:50:05 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/14 22:14:03 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include "common.h"
 
 # define MAX_PAYLOAD 65535
-# define COLLISION_DELAY 100000
+# define COLLISION_DELAY 5000000
 # define SLEEP_TIME 100
-# define INITIAL_SIGNAL_INTERVAL 15
+# define INITIAL_SIGNAL_INTERVAL 20
 # define SIGNAL_INTERVAL_PADDING_FACTOR 100
 
 typedef enum e_server_response
