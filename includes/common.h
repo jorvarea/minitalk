@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:21 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/14 14:01:45 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:01:54 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct s_timer
 }					t_timer;
 
 int					calculate_checksum(t_packet *packet);
-void				reset_byte(void);
 void				initialize_sigaction(struct sigaction *sig_action,
 						void (*signal_handler)(int, siginfo_t *, void *));
 

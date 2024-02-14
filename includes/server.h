@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:26 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/14 14:01:39 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:01:21 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void						handle_byte(unsigned char byte, t_packet *packet,
 void						send_ack(int pid);
 void						send_collision_signal(int pid);
 void						ask_retransmission(int pid);
+void						reset_byte(void);
 void						handle_complete_packet(t_server_state *state,
 								t_packet *packet,
 								unsigned int *field_bytes_read);

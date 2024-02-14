@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/14 14:18:33 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:02:15 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ void						handle_server_response(t_packet *packet,
 								t_timer *timer);
 void						handle_timeout(t_packet *packet, int server_pid,
 								int *signal_interval, t_timer *timer);
+void						reset_byte(void);
 
 #endif
