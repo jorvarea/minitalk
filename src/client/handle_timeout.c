@@ -12,12 +12,12 @@
 
 #include "client.h"
 
-void send_until_stop_signal(int server_pid, int signal_interval)
+void	send_until_stop_signal(int server_pid, int signal_interval)
 {
-	int new_signal_interval;
+	int	new_signal_interval;
 
 	new_signal_interval = signal_interval * SIGNAL_INTERVAL_PADDING_FACTOR;
-	while(g_byte.stop_signal == 0)
+	while (g_byte.stop_signal == 0)
 	{
 		kill(server_pid, SIGUSR1);
 		usleep(new_signal_interval);
