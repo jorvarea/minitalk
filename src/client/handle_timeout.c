@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   timeout_conditions.c                               :+:      :+:    :+:   */
+/*   handle_timeout.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 14:23:48 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 14:24:08 by jorvarea         ###   ########.fr       */
+/*   Created: 2024/02/12 22:01:04 by jorvarea          #+#    #+#             */
+/*   Updated: 2024/02/14 14:21:02 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "server.h"
+#include "client.h"
 
-bool	timeout_conditions(t_server_state state, unsigned int payload_length,
-		t_timer *timer)
+void	handle_timeout(t_packet *packet, int server_pid, int *signal_interval, t_timer *timer)
 {
-	bool	is_timeout;
-
-	is_timeout = false;
-	if (state == READING_PAYLOAD_LENGTH && timer->time > (2 * timer->timeout))
-		is_timeout = true;
-	else if (state == READING_DATA && timer->time > (timer->timeout
-			* payload_length))
-		is_timeout = true;
-	return (is_timeout);
+	ft_printf("\033[0;31m");
+	ft_printf("Timeout. Retransmitting...\n");
+	ft_printf("\033[0m");
+	*signal_interval *= 2;
+	send_packet(packet, server_pid, *signal_interval);
+	timer->time = 0;
 }

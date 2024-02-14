@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:39:33 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 22:13:26 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:20:27 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	handle_success(void)
 }
 
 void	handle_server_response(t_packet *packet, int server_pid,
-		int *signal_interval)
+		int *signal_interval, t_timer *timer)
 {
 	if (g_byte.byte == ACK)
 		handle_success();
@@ -55,4 +55,5 @@ void	handle_server_response(t_packet *packet, int server_pid,
 	else if (g_byte.byte == COLLISION_DETECTED)
 		handle_collision(packet, server_pid, signal_interval);
 	reset_byte();
+	timer->time = 0;
 }

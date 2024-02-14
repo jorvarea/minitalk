@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:10 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 21:55:17 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/14 13:29:13 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,13 @@ static void	signal_handler(int sig_num, siginfo_t *info, void *context)
 }
 
 void	initialize_server(t_server_state *state, t_packet *packet,
-		unsigned int *field_bytes_read, unsigned int *timeout)
+		unsigned int *field_bytes_read)
 {
 	show_banner();
 	print_server_pid();
 	*state = WAITING_PACKET;
 	packet->data = NULL;
 	*field_bytes_read = 0;
-	*timeout = 8 * INITIAL_SIGNAL_INTERVAL;
-	ft_printf("Current timeout: %d us\n", *timeout);
 	ft_printf("\nReceived messages: ");
 }
 
@@ -47,23 +45,17 @@ int	main(void)
 	t_server_state		state;
 	t_packet			packet;
 	unsigned int		field_bytes_read;
-	t_timer				timer;
 	struct sigaction	sig_action;
 
-	initialize_server(&state, &packet, &field_bytes_read, &timer.timeout);
+	initialize_server(&state, &packet, &field_bytes_read);
 	initialize_sigaction(&sig_action, signal_handler);
 	while (true)
 	{
 		if (g_byte.bits_written >= 8)
 			handle_byte(g_byte.byte, &packet, &state, &field_bytes_read);
 		if (state == PACKET_COMPLETE)
-			handle_complete_packet(&state, &packet, &field_bytes_read, &timer);
-		if (state == WAITING_PACKET || state == READING_CHECKSUM)
-			timer.time = 0;
-		if (timeout_conditions(state, packet.payload_length, &timer))
-			handle_timeout(&state, &packet, &field_bytes_read, &timer);
-		timer.time++;
-		usleep(1);
+			handle_complete_packet(&state, &packet, &field_bytes_read);
+		pause();
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/13 22:07:48 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:18:06 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,10 @@ static void	signal_handler(int sig_num, siginfo_t *info, void *context)
 	g_byte.bits_written++;
 }
 
-void	initialize_client(int argc, char **argv, int *server_pid,
-		int *signal_interval)
+void	initialize_client(int *signal_interval, t_timer *timer)
 {
-	if (argc != 3)
-	{
-		ft_printf("\033[0;31m");
-		ft_printf("Error: Invalid argument count\n");
-		ft_printf("\033[0m");
-		exit(1);
-	}
-	*server_pid = ft_atoi(argv[1]);
-	if (server_pid <= 0)
-	{
-		ft_printf("\033[0;31m");
-		ft_printf("Error: Invalid server PID\n");
-		ft_printf("\033[0m");
-		exit(1);
-	}
+	timer->time = 0;
+	timer->timeout = RESPONSE_SIGNAL_INTERVAL * 3;
 	*signal_interval = INITIAL_SIGNAL_INTERVAL;
 }
 
@@ -51,17 +37,21 @@ int	main(int argc, char **argv)
 	int					signal_interval;
 	int					server_pid;
 	struct sigaction	sig_action;
+	t_timer				timer;
 
-	initialize_client(argc, argv, &server_pid, &signal_interval);
+	handle_input(argc, argv, &server_pid, &packet);
+	initialize_client(&signal_interval, &timer);
 	initialize_sigaction(&sig_action, signal_handler);
-	packet_message(argv[2], &packet);
 	send_packet(&packet, server_pid, signal_interval);
 	ft_printf("Initial signal interval: %d us\n", signal_interval);
 	while (true)
 	{
 		if (g_byte.bits_written == 2)
-			handle_server_response(&packet, server_pid, &signal_interval);
-		pause();
+			handle_server_response(&packet, server_pid, &signal_interval, &timer);
+		if (timer.time * SLEEP_TIME > timer.timeout)
+			handle_timeout(&packet, server_pid, &signal_interval, &timer);
+		timer.time++;
+		usleep(SLEEP_TIME);
 	}
 	return (0);
 }
