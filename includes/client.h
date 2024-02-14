@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:01:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/14 19:54:30 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/14 21:50:05 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define COLLISION_DELAY 100000
 # define SLEEP_TIME 100
 # define INITIAL_SIGNAL_INTERVAL 15
+# define SIGNAL_INTERVAL_PADDING_FACTOR 100
 
 typedef enum e_server_response
 {
