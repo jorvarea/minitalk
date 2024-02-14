@@ -12,7 +12,7 @@
 
 #include "client.h"
 
-void handle_input(int argc, char **argv, int *server_pid, t_packet *packet)
+void	handle_input(int argc, char **argv, int *server_pid, t_packet *packet)
 {
 	if (argc != 3)
 	{
@@ -29,5 +29,5 @@ void handle_input(int argc, char **argv, int *server_pid, t_packet *packet)
 		ft_printf("\033[0m");
 		exit(1);
 	}
-    packet_message(argv[2], packet);
+	packet_message(argv[2], packet);
 }

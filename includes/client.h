@@ -36,12 +36,15 @@ typedef struct s_byte
 
 extern t_byte				g_byte;
 
-void 						handle_input(int argc, char **argv, int *server_pid, t_packet *packet);
+void						handle_input(int argc, char **argv, int *server_pid,
+								t_packet *packet);
 void						packet_message(char *message, t_packet *packet);
 void						send_packet(t_packet *packet, int server_pid,
 								int signal_interval);
 void						handle_server_response(t_packet *packet,
-								int server_pid, int *signal_interval, t_timer *timer);
-void						handle_timeout(t_packet *packet, int server_pid, int *signal_interval, t_timer *timer);
+								int server_pid, int *signal_interval,
+								t_timer *timer);
+void						handle_timeout(t_packet *packet, int server_pid,
+								int *signal_interval, t_timer *timer);
 
 #endif

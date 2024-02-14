@@ -47,7 +47,8 @@ int	main(int argc, char **argv)
 	while (true)
 	{
 		if (g_byte.bits_written == 2)
-			handle_server_response(&packet, server_pid, &signal_interval, &timer);
+			handle_server_response(&packet, server_pid, &signal_interval,
+				&timer);
 		if (timer.time * SLEEP_TIME > timer.timeout)
 			handle_timeout(&packet, server_pid, &signal_interval, &timer);
 		timer.time++;
