@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:07:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/02/14 14:18:06 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:53:32 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	signal_handler(int sig_num, siginfo_t *info, void *context)
 {
 	(void)context;
 	(void)info;
-	g_byte.stop_signal = true;
+	g_byte.stop_signal = 1;
 	if (sig_num == SIGUSR2)
 		g_byte.byte += (1 << g_byte.bits_written);
 	g_byte.bits_written++;
