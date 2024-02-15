@@ -18,13 +18,18 @@ PRINTF 					= $(PRINTF_DIR)/printf.a
 CC						= gcc
 CFLAGS 					= -Wall -Werror -Wextra -Iincludes -I$(LIBFT_DIR) -I$(PRINTF_DIR)
 
-CLIENT_FILES			= $(wildcard $(CLIENT_DIR)/*.c) # Change this before sending
+CLIENT_FILES			= $(addprefix $(CLIENT_DIR)/,client.c handle_server_response.c \
+							packet_message.c send_packet.c handle_input.c handle_timeout.c \
+							reset_byte.c)
 CLIENT_OBJECT_FILES		= $(CLIENT_FILES:$(CLIENT_DIR)/%.c=obj/%.o)
 
-SERVER_FILES			= $(wildcard $(SERVER_DIR)/*.c) # Change this before sending
+SERVER_FILES			= $(addprefix $(SERVER_DIR)/,ask_retransmission.c print_message.c \
+							reset_state.c server.c handle_byte.c print_server_pid.c send_ack.c \
+							show_banner.c handle_complete_packet.c reset_byte.c \
+							send_collision_signal.c valid_checksum.c)
 SERVER_OBJECT_FILES		= $(SERVER_FILES:$(SERVER_DIR)/%.c=obj/%.o)
 
-COMMON_FILES			= $(wildcard $(COMMON_DIR)/*.c) # Change this before sending
+COMMON_FILES			= $(addprefix $(COMMON_DIR)/,calculate_checksum.c initialize_sigaction.c)
 COMMON_OBJECT_FILES		= $(COMMON_FILES:$(COMMON_DIR)/%.c=obj/%.o)
 
 all: $(NAME)
